@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.views.generic.edit import UpdateView
 
 from marketplace.models import Product
 
 from django.core.paginator import Paginator
 
 from marketplace.forms import ProductModelForm
+from django.urls import reverse
+
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 
 class HomeView(View):
@@ -77,4 +81,19 @@ class UserProductListView(View):
             'products' : products
         }
         return render(request, 'pages/products/user_productlist.html', context)
+    
+class ProductUpdateView(LoginRequiredMixin ,UpdateView):
+    template_name = "pages/products/edit.html"
+    form_class = ProductModelForm
+
+    def get_queryset(self):
+        return Product.objects.filter(user = self.request.user)
+
+    def get_success_url(self):
+        return reverse("product-list")
+
+
+
+
+
     

@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls.conf import include
 
-from .views import HomeView, UserProductListView
+from .views import HomeView, UserProductListView, ProductUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +14,7 @@ urlpatterns = [
 
     path('', HomeView.as_view(), name='home'),
     path('products/', UserProductListView.as_view(), name='product-list'),
+    path('products/<slug>/update', ProductUpdateView.as_view(), name='product-update'),
 
     path('marketplace/', include('marketplace.urls', namespace="marketplace")),
     
