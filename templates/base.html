@@ -1,0 +1,29 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% tailwind_css %}
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Incluyendo box icon -->
+    <link href='https://cdn.boxicons.com/fonts/transformations.min.css' rel='stylesheet'>
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3f4cef31bd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% block navbar %}{% endblock navbar %}
+
+    {% include "messages.html" %}
+
+    {% block content %}{% endblock content %}
+
+    {% block footer %}{% endblock footer %}
+
+    {% block javascript %}{% endblock javascript %}
+</body>
+</html>
