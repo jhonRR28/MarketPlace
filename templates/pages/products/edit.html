@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% include 'components/navbar.html' %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="max-w-5xl mx-auto p-6 bg-white shadow rounded-lg">
+    <h3 class="text-xl font-semibold text-gray-800 border-b pb-4 mb-6">
+        Edit Product: {{ object.name }}
+    </h3>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-8">
+        {% csrf_token %}
+
+        <!-- Imagen principal -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Thumbnail</label>
+            <div class="flex items-center space-x-6">
+                {% if object.thumbnail %}
+                    <img src="{{ object.thumbnail.url }}" alt="Thumbnail" class="h-24 w-24 rounded object-cover border">
+                {% endif %}
+                {{ form.thumbnail }}
+            </div>
+        </div>
+
+        <!-- Detalles del producto -->
+        <div>
+            <h4 class="text-lg font-medium text-gray-700 mb-4">Product Details</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Name</label>
+                    {{ form.name }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Category</label>
+                    {{ form.category }}
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">Description</label>
+                    {{ form.description }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Price (100 = $1, 1,000 = $10, 10,000 = $100)
+                    </label>
+                    {{ form.price }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Slug</label>
+                    <div class="flex rounded-md shadow-sm">
+                        <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 bg-gray-50 text-gray-500 sm:text-sm">
+                            https://vudera.com/p/
+                        </span>
+                        {{ form.slug }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido -->
+        <div>
+            <h4 class="text-lg font-medium text-gray-700 mb-4">What are you selling?</h4>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">URL (Optional)</label>
+                    {{ form.content_url }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Upload Content</label>
+                    {{ form.content_file }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Publicar -->
+        <div>
+            <label class="inline-flex items-center">
+                {{ form.active }}
+                <span class="ml-2 text-gray-700">Publish this product</span>
+            </label>
+        </div>
+
+        <!-- Botón -->
+        <div class="flex justify-end">
+            <button type="submit"
+                class="px-5 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500">
+                Save
+            </button>
+        </div>
+
+        {{ form.errors }}
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}
+
+
+{% block javascript %}
+
+{% endblock javascript %}

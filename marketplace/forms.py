@@ -21,7 +21,7 @@ class ProductModelForm(forms.ModelForm):
         'class': 'block w-full text-sm text-gray-900 dark:text-dark-txt file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50  hover:file:bg-indigo-100'
     }), required=False)
     content_file = forms.FileField(widget=forms.ClearableFileInput(attrs={
-        'class': 'block w-full text-sm text-gray-900 dark:text-dark-txt file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50  hover:file:bg-indigo-100'
+        'class': 'flex items-center gap-2 text-sm text-gray-900 dark:text-dark-txt file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 hover:file:bg-indigo-100'
     }), required=False)
     
     class Meta:
