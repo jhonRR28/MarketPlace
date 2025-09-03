@@ -4,7 +4,16 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls.conf import include
 
-from .views import HomeView, UserProductListView, ProductUpdateView, ProductDetailView
+from .views import (
+    HomeView, 
+    UserProductListView, 
+    ProductUpdateView, 
+    ProductDetailView, 
+    CreateCheckoutSessionView,
+    SuccessView,
+    CancelView,
+    stripe_webhook,
+    )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,6 +21,11 @@ urlpatterns = [
 
     path('users/', include('accounts.urls', namespace='users')),
 
+    path('create-checkout-session/<slug>/', CreateCheckoutSessionView.as_view(), name="create-checkout-session"),
+    path('success/', SuccessView.as_view(), name="success"),
+    path('cancel/', CancelView.as_view(), name="cancel"),
+    path('prueba/', stripe_webhook, name="stripe-webhook"),
+    
     path('', HomeView.as_view(), name='home'),
     path('products/', UserProductListView.as_view(), name='product-list'),
     path('products/<slug>/', ProductDetailView.as_view(), name='product-detail'),
